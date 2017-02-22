@@ -9,6 +9,18 @@ This extension is for that.
 
 ## Examples
 
+    > SELECT content::json->>'field' FROM http((
+                'GET',
+                 'http://localhost/v1/products/list',
+                 ARRAY[http_header('Authorization','Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9')],
+                 NULL,
+                 NULL
+              )::http_request)
+                       content                    
+    ----------------------------------------------	      
+     my value field
+    (1 row)	    
+    
     > SELECT urlencode('my special string''s & things?');
 
                   urlencode              
